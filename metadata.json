@@ -1,0 +1,56 @@
+{
+  "name": "thehyve-fractalis",
+  "version": "0.0.1",
+  "author": "thehyve",
+  "summary": "Puppet module for the Fractalis backend",
+  "license": "Apache-2.0",
+  "source": "https://github.com/thehyve/puppet-fractalis",
+  "project_page": "https://github.com/thehyve/puppet-fractalis",
+  "issues_url": "https://github.com/thehyve/puppet-fractalis/issues",
+  "dependencies": [
+    {
+      "name": "puppetlabs-stdlib",
+      "version_requirement": "4.x"
+    },
+    {
+      "name":"puppet-archive",
+      "version_requirement":">= 0.5.1 < 1.4.0"
+    },
+    {
+      "name": "puppet-rabbitmq",
+      "version_requirement": ">= 8.2.2 < 8.5.0"
+    },
+    {
+      "name": "puppet-python",
+      "version_requirement": ">= 2.1.0 < 2.3.0"
+    },
+    {
+      "name": "forward3ddev-r",
+      "version_requirement": ">= 0.0.2 < 0.1.0"
+    }
+  ],
+  "data_provider": null,
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [
+        "8",
+        "9"
+      ]
+    },
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "14.04",
+        "16.04",
+        "18.04"
+      ]
+    },
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "7"
+      ]
+    }
+  ]
+}

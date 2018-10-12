@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+cd "<%= @package_location %>"
+pwd
+
+export FRACTALIS_CONFIG=<%= @home %>/config.py
+<%= @gunicorn_command %> -w 3 -b :5000 --timeout 30 --error-logfile - fractalis:app

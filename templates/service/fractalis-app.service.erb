@@ -1,0 +1,11 @@
+[Unit]
+Description=Fractalis app service
+
+[Service]
+ExecStart=<%= @start_gunicorn_script %>
+User=<%= @user %>
+Restart=always
+StandardOutput=journal+console
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+cd "<%= @package_location %>"
+pwd
+
+export FRACTALIS_CONFIG=<%= @home %>/config.py
+<%= @celery_command %> worker -A fractalis:celery -l warning --autoscale 16,4

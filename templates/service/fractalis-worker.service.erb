@@ -1,0 +1,11 @@
+[Unit]
+Description=Fractalis worker service
+
+[Service]
+ExecStart=<%= @start_celery_script %>
+User=<%= @user %>
+Restart=always
+StandardOutput=journal+console
+
+[Install]
+WantedBy=multi-user.target
