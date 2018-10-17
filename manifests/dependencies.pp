@@ -24,13 +24,15 @@ class fractalis::dependencies inherits fractalis::params {
             virtualenv => 'present',
         }
 
-        apt::source { 'r-project':
-            location => 'https://cloud.r-project.org/bin/linux/ubuntu',
-            repos    => '',
-            key      => {
-                'id'     => 'E298A3A825C0D65DFD57CBB651716619E084DAB9',
-                'server' => 'keyserver.ubuntu.com',
-            },
+        $release = $facts['lsbdistcodename']
+        apt::key { 'r-project':
+            id     => 'E298A3A825C0D65DFD57CBB651716619E084DAB9',
+            server => 'keyserver.ubuntu.com',
+        }
+        -> file { '/etc/apt/sources.list.d/r-project.list':
+            ensure  => file,
+            mode    => '0644',
+            content => template('fractalis/sources/r-project.list.erb'),
         }
         -> package { 'r-base': }
     } else {
