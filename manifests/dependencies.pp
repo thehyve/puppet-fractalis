@@ -11,6 +11,8 @@ class fractalis::dependencies inherits fractalis::params {
         }
     }
 
+    package { 'r-base': }
+
     ::fractalis::bioconductor_package { 'limma': }
     ::fractalis::bioconductor_package { 'DESeq2': }
 

@@ -1,7 +1,5 @@
 define fractalis::bioconductor_package {
 
-    include ::r
-
     case $::osfamily {
         'Debian', 'RedHat': {
             $binary = '/usr/bin/R'
@@ -13,7 +11,7 @@ define fractalis::bioconductor_package {
     exec { "install_bioconductor_package_${name}":
         command => $command,
         unless  => "${binary} -q -e \"'${name}' %in% installed.packages()\" | grep 'TRUE'",
-        require => Class['r'],
+        require => Package['r-base'],
     }
 
 }
