@@ -18,7 +18,7 @@ class fractalis::package inherits fractalis::params {
     }
 
     exec { "Install fractalis ${version}":
-        command => "${pip} install .",
+        command => "${pip} install --user .",
         path    => ['/bin', '/usr/bin', '/usr/local/bin', "${::fractalis::params::python_environment}/bin"],
         unless  => "[ \"$(${pip} show fractalis | grep \"Version: \")\" = \"Version: ${version}\" ]",
         require => [
