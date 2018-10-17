@@ -5,10 +5,9 @@ class fractalis::dependencies inherits fractalis::params {
 
     package { 'redis-server': }
 
-    if !defined('::rabbitmq') {
-        class { '::rabbitmq':
-            node_ip_address => '127.0.0.1',
-        }
+    class { '::rabbitmq':
+        node_ip_address => '127.0.0.1',
+        manage_python   => false,
     }
 
     case $facts['os']['family'] {

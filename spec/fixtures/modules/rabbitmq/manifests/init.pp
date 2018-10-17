@@ -275,6 +275,6 @@ class rabbitmq(
     Array $archive_options                                                                           = $rabbitmq::params::archive_options,
     Array $loopback_users                                                                            = $rabbitmq::params::loopback_users,
     Boolean $service_restart                                                                         = $rabbitmq::params::service_restart,
-) {
+) inherits rabbitmq::params {
 
 }
