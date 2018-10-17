@@ -26,7 +26,7 @@ class fractalis::dependencies inherits fractalis::params {
 
         apt::source { 'r-project':
             location => 'https://cloud.r-project.org/bin/linux/ubuntu',
-            repos    => 'main',
+            repos    => '',
             key      => {
                 'id'     => 'E298A3A825C0D65DFD57CBB651716619E084DAB9',
                 'server' => 'keyserver.ubuntu.com',
