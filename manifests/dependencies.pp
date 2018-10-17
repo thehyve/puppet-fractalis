@@ -11,27 +11,35 @@ class fractalis::dependencies inherits fractalis::params {
         }
     }
 
-    if ($facts['os']['family'] == 'Debian' and $facts['lsbdistid'] == 'Ubuntu') {
-        include apt
-        apt::ppa { 'ppa:jonathonf/python-3.6': }
-    }
-
     package { 'r-base': }
 
     ::fractalis::bioconductor_package { 'limma': }
     ::fractalis::bioconductor_package { 'DESeq2': }
 
-    class { '::python':
-        version    => 'python3.6',
-        pip        => 'present',
-        dev        => 'present',
-        virtualenv => 'present',
+    if ($facts['os']['family'] == 'Debian' and $facts['lsbdistid'] == 'Ubuntu') {
+        include apt
+        apt::ppa { 'ppa:jonathonf/python-3.6': }
+        -> class { '::python':
+            version    => 'python3.6',
+            pip        => 'present',
+            dev        => 'present',
+            virtualenv => 'present',
+        }
+    } else {
+        class { '::python':
+            version    => 'python3.6',
+            pip        => 'present',
+            dev        => 'present',
+            virtualenv => 'present',
+        }
     }
-    -> ::python::virtualenv { $python_environment:
+
+    ::python::virtualenv { $python_environment:
         ensure     => present,
         version    => '3.6',
         owner      => $user,
         distribute => false,
+        require    => Class['::python'],
     }
     -> ::python::pip { 'setuptools':
         ensure     => latest,
