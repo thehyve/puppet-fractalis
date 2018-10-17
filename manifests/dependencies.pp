@@ -11,6 +11,19 @@ class fractalis::dependencies inherits fractalis::params {
         }
     }
 
+    case $facts['os']['family'] {
+        'Debian': {
+            $libxml_package = 'libxml2-dev'
+        }
+        'Redhat': {
+            $libxml_package = 'libxml2-devel'
+        }
+        default: {
+            fail("The fractalis module is not supported on an ${facts['os']['family']} based system.")
+        }
+    }
+    package { $libxml_package: }
+
     ::fractalis::bioconductor_package { 'limma': }
     ::fractalis::bioconductor_package { 'DESeq2': }
 
@@ -35,7 +48,8 @@ class fractalis::dependencies inherits fractalis::params {
             content => template('fractalis/sources/r-project.list.erb'),
         }
         -> package { 'r-base':
-            ensure => latest,
+            ensure  => latest,
+            require => Package[$libxml_package],
         }
     } else {
         class { '::python':
@@ -45,7 +59,9 @@ class fractalis::dependencies inherits fractalis::params {
             virtualenv => 'present',
         }
 
-        package { 'r-base': }
+        package { 'r-base':
+            require => Package[$libxml_package],
+        }
     }
 
     ::python::virtualenv { $python_environment:
