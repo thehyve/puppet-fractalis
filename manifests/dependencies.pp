@@ -11,8 +11,6 @@ class fractalis::dependencies inherits fractalis::params {
         }
     }
 
-    package { 'r-base': }
-
     ::fractalis::bioconductor_package { 'limma': }
     ::fractalis::bioconductor_package { 'DESeq2': }
 
@@ -25,6 +23,16 @@ class fractalis::dependencies inherits fractalis::params {
             dev        => 'present',
             virtualenv => 'present',
         }
+
+        apt::source { 'r-project':
+            location => 'https://cloud.r-project.org/bin/linux/ubuntu',
+            repos    => 'main',
+            key      => {
+                'id'     => 'E298A3A825C0D65DFD57CBB651716619E084DAB9',
+                'server' => 'keyserver.ubuntu.com',
+            },
+        }
+        -> package { 'r-base': }
     } else {
         class { '::python':
             version    => 'python3.6',
@@ -32,6 +40,8 @@ class fractalis::dependencies inherits fractalis::params {
             dev        => 'present',
             virtualenv => 'present',
         }
+
+        package { 'r-base': }
     }
 
     ::python::virtualenv { $python_environment:
