@@ -63,12 +63,14 @@ class fractalis::dependencies inherits fractalis::params {
     ::python::pip { 'celery':
         ensure     => latest,
         virtualenv => $python_environment,
+        owner      => $user,
         require    => Python::Virtualenv[$python_environment],
     }
 
     ::python::pip { 'gunicorn':
         ensure     => latest,
         virtualenv => $python_environment,
+        owner      => $user,
         require    => Python::Virtualenv[$python_environment],
     }
 
