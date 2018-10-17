@@ -24,6 +24,7 @@ puppet --version
 
 ### Puppet modules
 The module depends on the `stdlib`, `archive`, `rabbitmq`, `python`, and `r` modules.
+For installing on Ubuntu, also the `apt` module is required.
 
 The most convenient way is to run `puppet module install` as `root`:
 ```bash

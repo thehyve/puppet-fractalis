@@ -3,12 +3,17 @@ class fractalis::dependencies inherits fractalis::params {
     $user = $::fractalis::params::user
     $python_environment = $::fractalis::params::python_environment
 
-    package { 'redis': }
+    package { 'redis-server': }
 
     if !defined('::rabbitmq') {
         class { '::rabbitmq':
             node_ip_address => '127.0.0.1',
         }
+    }
+
+    if ($facts['os']['family'] == 'Debian' and $facts['lsbdistid'] == 'Ubuntu') {
+        include apt
+        apt::ppa { 'ppa:jonathonf/python-3.6': }
     }
 
     package { 'r-base': }
