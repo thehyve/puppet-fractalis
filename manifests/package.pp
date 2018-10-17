@@ -24,6 +24,7 @@ class fractalis::package inherits fractalis::params {
         require => [
             Archive[$archive_location],
             Python::Pip['setuptools'],
+            Package['r-base'],
         ],
         cwd     => $::fractalis::params::package_location,
         user    => $user,

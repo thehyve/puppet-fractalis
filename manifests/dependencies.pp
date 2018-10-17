@@ -34,7 +34,9 @@ class fractalis::dependencies inherits fractalis::params {
             mode    => '0644',
             content => template('fractalis/sources/r-project.list.erb'),
         }
-        -> package { 'r-base': }
+        -> package { 'r-base':
+            ensure => latest,
+        }
     } else {
         class { '::python':
             version    => 'python3.6',
