@@ -7,6 +7,7 @@ class fractalis::params(
     String[1] $version                          = lookup('fractalis::version', String, first, 'v1.3.1'),
     String[1] $source_version                   = lookup('fractalis::source_version', String, first, 'v1.3.1'),
     Optional[String[1]] $source_url             = lookup('fractalis::source_url', Optional[String[1]], first, undef),
+    String[1] $package_name                     = lookup('fractalis::package_name', String, first, 'fractalis'),
 ) {
     # Set fractalis user home directory
     if $user_home == undef {
@@ -22,7 +23,7 @@ class fractalis::params(
         $source_tag = $version
         $source = $::fractalis::params::source_url
     }
-    $package_location = "${fractalis_user_home}/fractalis-${source_tag}"
+    $package_location = "${fractalis_user_home}/${package_name}-${source_tag}"
 
     $python_environment = "${fractalis_user_home}/environment"
     $config_location = "${fractalis_user_home}/config.py"
