@@ -23,7 +23,7 @@ puppet --version
 ```
 
 ### Puppet modules
-The module depends on the `stdlib`, `archive`, `rabbitmq`, `python`, and `r` modules.
+The module depends on the `stdlib`, `archive`, `rabbitmq`, and `python` modules.
 For installing on Ubuntu, also the `apt` module is required.
 
 The most convenient way is to run `puppet module install` as `root`:
@@ -32,7 +32,6 @@ sudo puppet module install puppetlabs-stdlib
 sudo puppet module install puppet-archive -v 3.0.0
 sudo puppet module install puppet-rabbitmq -v 8.5.0
 sudo puppet module install puppet-python -v 2.1.1
-sudo puppet module install forward3ddev-r -v 0.0.2
 ```
 
 Check the installed modules:
