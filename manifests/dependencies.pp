@@ -13,15 +13,18 @@ class fractalis::dependencies inherits fractalis::params {
     case $facts['os']['family'] {
         'Debian': {
             $libxml_package = 'libxml2-dev'
+            $libcurl_package = 'libcurl4-gnutls-dev'
         }
         'Redhat': {
             $libxml_package = 'libxml2-devel'
+            $libcurl_package = 'libcurl-devel'
         }
         default: {
             fail("The fractalis module is not supported on an ${facts['os']['family']} based system.")
         }
     }
     package { $libxml_package: }
+    package { $libcurl_package: }
 
     ::fractalis::bioconductor_package { 'limma': }
     ::fractalis::bioconductor_package { 'DESeq2': }
