@@ -29,7 +29,7 @@ For installing on Ubuntu, also the `apt` module is required.
 The most convenient way is to run `puppet module install` as `root`:
 ```bash
 sudo puppet module install puppetlabs-stdlib
-sudo puppet module install puppet-archive -v 1.2.0
+sudo puppet module install puppet-archive -v 3.0.0
 sudo puppet module install puppet-rabbitmq -v 8.2.2
 sudo puppet module install puppet-python -v 2.1.1
 sudo puppet module install forward3ddev-r -v 0.0.2
