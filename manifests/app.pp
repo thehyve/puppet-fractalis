@@ -26,6 +26,7 @@ class fractalis::app inherits fractalis::params {
     -> service { 'fractalis-app':
         ensure   => running,
         provider => 'systemd',
+        enable   => true,
         require  => [
             Exec["Install fractalis ${::fractalis::package::version}"],
             Python::Pip['gunicorn']

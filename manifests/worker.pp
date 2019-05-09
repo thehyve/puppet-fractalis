@@ -26,6 +26,7 @@ class fractalis::worker inherits fractalis::params {
     -> service { 'fractalis-worker':
         ensure   => running,
         provider => 'systemd',
+        enable   => true,
         require  => [
             Exec["Install fractalis ${::fractalis::package::version}"],
             Python::Pip['celery']
